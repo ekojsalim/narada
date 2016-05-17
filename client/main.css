@@ -1,0 +1,42 @@
+/* Accounts' form */
+.wrapperLogin {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.accountContainer {
+  -webkit-box-flex: 1;
+-webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        position: relative;
+        top: 45%;
+        transform: translateY(-50%);
+}
+
+.at-form {
+  text-align:center;
+}
+
+
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family:'Roboto';
+}
+
+
+@media (max-width : 600px) {
+  .at-form {
+    margin-left:10px
+  }
+}
