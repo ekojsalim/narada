@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {House} from "../collection.js";
+import {House} from "/imports/api/collections/collection.js";
 
 Meteor.publish("houses", function() {
   return House.find({});

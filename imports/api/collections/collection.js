@@ -1,6 +1,8 @@
 import {Mongo} from "meteor/mongo";
 import {Class} from "meteor/jagi:astronomy";
 
+const Houses = new Mongo.Collection("houses");
+
 const Transaction = Class.create({
   name: "Transaction",
   fields: {
@@ -13,7 +15,10 @@ const Transaction = Class.create({
 const Student = Class.create({
   name: "Student",
   fields: {
-    id: Mongo.ObjectID,
+    id: {
+      type: String,
+      default: Random.id()
+    },
     name: String,
     points: {
       default: 0,
@@ -30,7 +35,7 @@ const Student = Class.create({
 
 export const House = Class.create({
   name: "House",
-  collection: new Mongo.Collection("houses"),
+  collection: Houses,
   fields: {
     name: String,
     students: {
@@ -44,4 +49,18 @@ export const House = Class.create({
       default: 0
     }
     }
+});
+
+Meteor.methods({
+  redeem(studentId, point) {
+    point(studentId, (-point));
+  },
+  point(studentId, point) {
+    let y = House.findOne({"students.id": studentId});
+    y.points += point
+    y.transactions.push({pointChange: (point), authorizer: Meteor.userId()})
+  },
+  add(query1) {
+    House.insert(query1);
+  }
 });
